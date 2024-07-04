@@ -22,6 +22,7 @@
 
         <TextBlock Text="Nome de Usuário" FontSize="14" FontFamily="Montserrat-Regular" Foreground="#595959" Margin="80,265"/>
         <TextBox TextAlignment="Left" HorizontalAlignment="Center" Height="20" Text="" VerticalAlignment="Center" Width="320" Background="Transparent" BorderBrush="Transparent" TextChanged="TextBox_TextChanged" FontFamily="Montserrat-Regular" SelectionBrush="Transparent" SelectionTextBrush="Transparent"/>
+        <Button Content="TESTE" HorizontalAlignment="Center" Height="43" Margin="0,455,0,0" VerticalAlignment="Top" Width="152" Click="Button_Click"/>
     </Grid>
 
 </Window>

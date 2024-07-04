@@ -28,5 +28,10 @@ namespace Mader_Control_System.Login
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
