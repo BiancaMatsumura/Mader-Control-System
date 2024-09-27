@@ -9,20 +9,18 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Border Background="#F2F2F2"  CornerRadius="20" ></Border>
-        <TextBlock  Margin="50" Text="madersilva" FontFamily="Harabara Mais Demo" FontSize="74" Foreground="#FF182859" HorizontalAlignment="Center" />
-
-        <TextBlock Text ="CONTROL SYSTEM" FontFamily="Montserrat-Regular" FontSize="21" Foreground="#595959" HorizontalAlignment="Center" Margin="119"  />
-        <TextBlock  Margin="200" Text="LOGIN" FontFamily="Harabara Mais Demo" FontSize="38" Foreground="#595959" HorizontalAlignment="Center"  />
-        <Border BorderBrush ="#595959" BorderThickness="1.5" CornerRadius="5" Background="Transparent" Margin="80,280"       />
-
+        <Border Background="#F2F2F2" CornerRadius="20">
+            <Button Content="ENTRAR" FontFamily="Montserrat-Regular" HorizontalAlignment="Center" Height="45" VerticalAlignment="Top" Width="152" Click="Button_Click" Margin="0,458,0,0"/>
+        </Border>
+        <TextBlock Margin="0,50,0,481" Text="madersilva" FontFamily="Harabara Mais Demo" FontSize="74" Foreground="#FF182859" HorizontalAlignment="Center" />
+        <TextBlock Text="CONTROL SYSTEM" FontFamily="Montserrat-Regular" FontSize="21" Foreground="#595959" HorizontalAlignment="Center" Margin="0,119,0,456"/>
+        <TextBlock Margin="0,200,0,360" Text="LOGIN" FontFamily="Harabara Mais Demo" FontSize="38" Foreground="#595959" HorizontalAlignment="Center"/>
+        <Border BorderBrush="#595959" BorderThickness="1.5" CornerRadius="5" Background="Transparent" Margin="80,280"/>
         <TextBlock Text="Nome de Usuário" FontSize="14" FontFamily="Montserrat-Regular" Foreground="#595959" Margin="80,265"/>
-        <TextBox TextAlignment="Left" HorizontalAlignment="Center" Height="20" Text="" VerticalAlignment="Center" Width="320" Background="Transparent" BorderBrush="Transparent" TextChanged="TextBox_TextChanged" FontFamily="Montserrat-Regular" SelectionBrush="Transparent" SelectionTextBrush="Transparent"/>
-        <Button Content="TESTE" HorizontalAlignment="Center" Height="43" Margin="0,455,0,0" VerticalAlignment="Top" Width="152" Click="Button_Click"/>
+        <TextBox x:Name="UsernameTextBox" TextAlignment="Left" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="320" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat-Regular"/>
     </Grid>
 
 </Window>
