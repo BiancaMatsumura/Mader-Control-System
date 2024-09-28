@@ -1,6 +1,7 @@
-﻿<Window x:Class="Mader_Control_System.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="Mader_Control_System.MainWindow"
         Title="MainWindow" Height="900" Width="1500"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -10,20 +11,195 @@
         >
     <Grid>
         <Border 
-            Background="#F2F2F2" CornerRadius="20">
+            Background="#F2F2F2" CornerRadius="10">
             
-
         </Border>
 
-        <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" Margin="0,10,0,0" Foreground="#595959"/>
+        <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="70" Margin="586,10,0,0" Foreground="#59595950"/>
         <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" Margin="0,7,0,0" Foreground="#FF182859"/>
 
-        <Image Margin="100,136,0,0" Source="/assets/image/fundo1.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1290" Height="700"/>
-        <Image Margin="514,99,954,769" Source="/assets/image/home.png" Stretch="Fill"/>
-        <Image Margin="623,99,845,769" Source="/assets/image/file-add.png" Stretch="Fill"/>
-        <Image Margin="734,99,734,769" Source="/assets/image/user.png" Stretch="Fill"/>
-        <Image Margin="832,99,636,769" Source="/assets/image/box.png" Stretch="Fill"/>
-        <Image Margin="935,99,533,769" Source="/assets/image/settings.png" Stretch="Fill"/>
+        <Grid Name="InfoGrid"
+              Visibility="Collapsed" 
+              Margin="0,153,0,0"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Width="1290" Height="700"
+              Background="Transparent">
+            <!-- Cor de fundo da Grid -->
+            <!-- Informações dentro da Grid -->
+            <Image Source="/assets/image/fundo1.png"
+                   Stretch="Fill"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top" Width="1290" Height="700"/>
+
+            <!-- Exemplo de TextBox e Label -->
+            <TextBox Width="200" Height="30"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     Margin="0,200,0,0"
+                      />
+
+            <Label Content="Exemplo de Label"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0,250,0,0"/>
+
+            <!-- Outros componentes que você quiser -->
+        </Grid>
+
+
+        <!-- HOME BUTTON -->
+        <Image Source="/assets/image/home.png"
+               Margin="514,99,954,769" Stretch="Fill">
+
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="32"/>
+                            <Setter Property="Height" Value="32"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- NEW FILE BUTTON -->
+        <Image Source="/assets/image/file-add.png"
+               Margin="623,99,845,769" Stretch="Fill"
+               MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="32"/>
+                            <Setter Property="Height" Value="32"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- USER BUTTON -->
+        <Image Source="/assets/image/user.png"
+               Margin="734,99,734,769" Stretch="Fill">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="32"/>
+                            <Setter Property="Height" Value="32"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- BOX BUTTON -->
+        <Image Source="/assets/image/box.png"
+               Margin="832,99,636,769" Stretch="Fill">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="32"/>
+                            <Setter Property="Height" Value="32"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- SETTINGS BUTTON -->
+        <Image Source="/assets/image/settings.png"
+               Margin="935,99,533,769" Stretch="Fill">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="32"/>
+                            <Setter Property="Height" Value="32"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- CLOSE BUTTON -->
+        <Image Source="/assets/image/cross-small.png" 
+               Margin="1460,10,10,860" Stretch="Fill"
+               MouseLeftButtonDown="Close_MouseLeftButtonDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="28"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <!-- MINIMIZE BUTTON -->
+        <Image Source="/assets/image/minus-small.png" 
+               Margin="1425,10,45,860" Stretch="Fill"
+               MouseLeftButtonDown="Minimized_MouseLeftButtonDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <!-- Trigger quando o mouse entra -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="25"/>
+                            <Setter Property="Height" Value="25"/>
+                        </Trigger>
+                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+
 
     </Grid>
 </Window>

@@ -12,10 +12,12 @@
 
   <ItemGroup>
     <None Remove="assets\image\box.png" />
+    <None Remove="assets\image\cross-small.png" />
     <None Remove="assets\image\file-add.png" />
     <None Remove="assets\image\fundo1.png" />
     <None Remove="assets\image\home.png" />
     <None Remove="assets\image\logo.png" />
+    <None Remove="assets\image\minus-small.png" />
     <None Remove="assets\image\settings.png" />
     <None Remove="assets\image\user.png" />
   </ItemGroup>
@@ -32,10 +34,12 @@
 
   <ItemGroup>
     <Resource Include="assets\image\box.png" />
+    <Resource Include="assets\image\cross-small.png" />
     <Resource Include="assets\image\file-add.png" />
     <Resource Include="assets\image\fundo1.png" />
     <Resource Include="assets\image\home.png" />
     <Resource Include="assets\image\logo.png" />
+    <Resource Include="assets\image\minus-small.png" />
     <Resource Include="assets\image\settings.png" />
     <Resource Include="assets\image\user.png" />
   </ItemGroup>
