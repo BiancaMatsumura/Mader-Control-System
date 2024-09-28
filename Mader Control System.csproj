@@ -11,6 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\image\box.png" />
+    <None Remove="assets\image\file-add.png" />
+    <None Remove="assets\image\fundo1.png" />
+    <None Remove="assets\image\home.png" />
+    <None Remove="assets\image\logo.png" />
+    <None Remove="assets\image\settings.png" />
+    <None Remove="assets\image\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="assets\app_icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -18,6 +28,16 @@
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\image\box.png" />
+    <Resource Include="assets\image\file-add.png" />
+    <Resource Include="assets\image\fundo1.png" />
+    <Resource Include="assets\image\home.png" />
+    <Resource Include="assets\image\logo.png" />
+    <Resource Include="assets\image\settings.png" />
+    <Resource Include="assets\image\user.png" />
   </ItemGroup>
 
 </Project>

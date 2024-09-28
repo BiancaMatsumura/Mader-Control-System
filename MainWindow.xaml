@@ -1,10 +1,29 @@
 ﻿<Window x:Class="Mader_Control_System.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="900" Width="1500"
         WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        
         >
     <Grid>
-        <TextBlock Text="Bem-vindo ao Sistema de Controle!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+        <Border 
+            Background="#F2F2F2" CornerRadius="20">
+            
+
+        </Border>
+
+        <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" Margin="0,10,0,0" Foreground="#595959"/>
+        <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" Margin="0,7,0,0" Foreground="#FF182859"/>
+
+        <Image Margin="100,136,0,0" Source="/assets/image/fundo1.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1290" Height="700"/>
+        <Image Margin="514,99,954,769" Source="/assets/image/home.png" Stretch="Fill"/>
+        <Image Margin="623,99,845,769" Source="/assets/image/file-add.png" Stretch="Fill"/>
+        <Image Margin="734,99,734,769" Source="/assets/image/user.png" Stretch="Fill"/>
+        <Image Margin="832,99,636,769" Source="/assets/image/box.png" Stretch="Fill"/>
+        <Image Margin="935,99,533,769" Source="/assets/image/settings.png" Stretch="Fill"/>
+
     </Grid>
 </Window>
