@@ -23,14 +23,26 @@ namespace Mader_Control_System
 
         private void FileAdd_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (InfoGrid.Visibility == Visibility.Collapsed)
+            if (NewFileArea.Visibility == Visibility.Collapsed)
             {
-                InfoGrid.Visibility = Visibility.Visible;
+                NewFileArea.Visibility = Visibility.Visible;
             }
             else
             {
-                InfoGrid.Visibility = Visibility.Collapsed;
+                NewFileArea.Visibility = Visibility.Collapsed;
             }
+
+            if (UserArea.Visibility == Visibility.Collapsed)
+            {
+                UserArea.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UserArea.Visibility = Visibility.Collapsed;
+            }
+
+
+
         }
     }
 

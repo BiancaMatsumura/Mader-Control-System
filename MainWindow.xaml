@@ -12,21 +12,27 @@
     <Grid>
         <Border 
             Background="#F2F2F2" CornerRadius="10">
-            
+
         </Border>
 
         <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="70" Margin="586,10,0,0" Foreground="#59595950"/>
         <TextBlock Text="madersilva" FontFamily="Harabara Mais Demo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" Margin="0,7,0,0" Foreground="#FF182859"/>
 
-        <Grid Name="InfoGrid"
+        <Image Source="/assets/image/foreground.png"
+        Stretch="Fill"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top" Width="1268" Height="676" Margin="119,172,0,0"/>
+
+        <!-- NEW FILE AREA -->
+        <Grid Name="NewFileArea" 
               Visibility="Collapsed" 
               Margin="0,153,0,0"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
               Width="1290" Height="700"
               Background="Transparent">
-            <!-- Cor de fundo da Grid -->
-            <!-- Informações dentro da Grid -->
+
+            <!-- fundo -->
             <Image Source="/assets/image/fundo1.png"
                    Stretch="Fill"
                    HorizontalAlignment="Center"
@@ -44,13 +50,47 @@
                    VerticalAlignment="Top"
                    Margin="0,250,0,0"/>
 
-            <!-- Outros componentes que você quiser -->
+            <!--  -->
+        </Grid>
+
+        <!-- USER AREA -->
+        <Grid Name="UserArea" 
+             Visibility="Collapsed"
+              Margin="0,153,0,0"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Width="1290" Height="700"
+              Background="Transparent">
+
+            <!-- fundo -->
+            <Image Source="/assets/image/fundo1.png"
+                   Stretch="Fill"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top" Width="1290" Height="700"/>
+
+            <!-- Exemplo de TextBox e Label -->
+            <TextBox Width="200" Height="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="37,76,0,0" Text="" FontFamily="Montserrat"
+                      >
+                <TextBox.Style>
+                    <Style/>
+                </TextBox.Style>
+            </TextBox>
+
+            <Label Content="Exemplo de Label" FontFamily="Montserrat Medium" FontSize="14" Foreground="#FF182859"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="37,44,0,0"/>
+
+            <!--  -->
         </Grid>
 
 
         <!-- HOME BUTTON -->
         <Image Source="/assets/image/home.png"
-               Margin="514,99,954,769" Stretch="Fill">
+               Margin="514,101,954,767" Stretch="Fill">
 
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -72,7 +112,7 @@
 
         <!-- NEW FILE BUTTON -->
         <Image Source="/assets/image/file-add.png"
-               Margin="623,99,845,769" Stretch="Fill"
+               Margin="622,101,846,767" Stretch="Fill"
                MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -94,7 +134,9 @@
 
         <!-- USER BUTTON -->
         <Image Source="/assets/image/user.png"
-               Margin="734,99,734,769" Stretch="Fill">
+               Margin="734,101,734,767" Stretch="Fill"
+               MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
+
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>
@@ -115,7 +157,7 @@
 
         <!-- BOX BUTTON -->
         <Image Source="/assets/image/box.png"
-               Margin="832,99,636,769" Stretch="Fill">
+               Margin="832,101,636,767" Stretch="Fill">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>
@@ -136,7 +178,7 @@
 
         <!-- SETTINGS BUTTON -->
         <Image Source="/assets/image/settings.png"
-               Margin="935,99,533,769" Stretch="Fill">
+               Margin="934,101,534,767" Stretch="Fill">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>
