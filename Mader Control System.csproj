@@ -46,4 +46,8 @@
     <Resource Include="assets\image\user.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
 </Project>

@@ -55,7 +55,7 @@
 
         <!-- USER AREA -->
         <Grid Name="UserArea" 
-             Visibility="Collapsed"
+             Visibility="Visible"
               Margin="0,153,0,0"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
@@ -72,11 +72,9 @@
             <TextBox Width="200" Height="30"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Margin="37,76,0,0" Text="" FontFamily="Montserrat"
-                      >
-                <TextBox.Style>
-                    <Style/>
-                </TextBox.Style>
+                     Margin="37,210,0,0" Text="" FontFamily="Montserrat">
+
+
             </TextBox>
 
             <Label Content="Exemplo de Label" FontFamily="Montserrat Medium" FontSize="14" Foreground="#FF182859"
@@ -90,8 +88,9 @@
 
         <!-- HOME BUTTON -->
         <Image Source="/assets/image/home.png"
-               Margin="514,101,954,767" Stretch="Fill">
-
+               Margin="514,101,954,767" Stretch="Fill"
+               MouseLeftButtonDown="HomeButton_Click">
+               
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>

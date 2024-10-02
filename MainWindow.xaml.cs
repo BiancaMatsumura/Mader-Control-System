@@ -27,23 +27,33 @@ namespace Mader_Control_System
             {
                 NewFileArea.Visibility = Visibility.Visible;
             }
-            else
-            {
-                NewFileArea.Visibility = Visibility.Collapsed;
-            }
+          
 
             if (UserArea.Visibility == Visibility.Collapsed)
             {
                 UserArea.Visibility = Visibility.Visible;
             }
-            else
+
+        }
+
+        private void HomeButton_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+            if (NewFileArea.Visibility == Visibility.Visible)
+            {
+                NewFileArea.Visibility = Visibility.Collapsed;
+            }
+
+            
+            if (UserArea.Visibility == Visibility.Visible)
             {
                 UserArea.Visibility = Visibility.Collapsed;
             }
-
-
-
+          
         }
+
+
+
     }
 
 
