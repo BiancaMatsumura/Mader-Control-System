@@ -11,12 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\image\botãoClientes_ativado.png" />
+    <None Remove="assets\image\botãoClientes_desativado.png" />
     <None Remove="assets\image\box.png" />
     <None Remove="assets\image\cross-small.png" />
     <None Remove="assets\image\file-add.png" />
     <None Remove="assets\image\foreground.png" />
     <None Remove="assets\image\fundo1.png" />
+    <None Remove="assets\image\fundo_user.png" />
     <None Remove="assets\image\home.png" />
+    <None Remove="assets\image\lateral_user.png" />
     <None Remove="assets\image\logo.png" />
     <None Remove="assets\image\minus-small.png" />
     <None Remove="assets\image\settings.png" />
@@ -34,12 +38,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\image\botãoClientes_ativado.png" />
+    <Resource Include="assets\image\botãoClientes_desativado.png" />
     <Resource Include="assets\image\box.png" />
     <Resource Include="assets\image\cross-small.png" />
     <Resource Include="assets\image\file-add.png" />
     <Resource Include="assets\image\foreground.png" />
     <Resource Include="assets\image\fundo1.png" />
+    <Resource Include="assets\image\fundo_user.png" />
     <Resource Include="assets\image\home.png" />
+    <Resource Include="assets\image\lateral_user.png" />
     <Resource Include="assets\image\logo.png" />
     <Resource Include="assets\image\minus-small.png" />
     <Resource Include="assets\image\settings.png" />

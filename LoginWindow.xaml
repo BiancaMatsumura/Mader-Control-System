@@ -39,10 +39,10 @@
         <TextBlock Margin="0,200,0,360" Text="LOGIN" FontFamily="Harabara Mais Demo" FontSize="38" Foreground="#595959" HorizontalAlignment="Center"/>
         <Border BorderBrush="#595959" BorderThickness="1.5" CornerRadius="5" Background="Transparent" Margin="80,280"/>
         <TextBlock Text="Nome de Usuário" FontSize="14" FontFamily="Montserrat Regular" Foreground="#595959" Margin="80,265,80,320"/>
-        <TextBox x:Name="UsernameTextBox" TextAlignment="Left" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="320" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat Regular"/>
+        <TextBox x:Name="UsernameTextBox" TextAlignment="Left" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="320" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat Regular" VerticalContentAlignment="Center"/>
         <Border BorderBrush="#595959" BorderThickness="1.5" CornerRadius="5" Background="Transparent" Margin="80,348,80,212"/>
         <TextBlock Text="Senha" FontSize="14" FontFamily="Montserrat Regular" Foreground="#595959" Margin="80,333,80,252"/>
-        <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Center" Width="320" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Margin="0,359,0,0"/>
+        <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Center" Width="320" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Margin="0,359,0,0" VerticalContentAlignment="Center"/>
     </Grid>
 
 </Window>

@@ -27,8 +27,10 @@ namespace Mader_Control_System
             {
                 NewFileArea.Visibility = Visibility.Visible;
             }
-          
 
+        }
+        private void UserPage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
             if (UserArea.Visibility == Visibility.Collapsed)
             {
                 UserArea.Visibility = Visibility.Visible;
@@ -54,6 +56,15 @@ namespace Mader_Control_System
 
 
 
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 

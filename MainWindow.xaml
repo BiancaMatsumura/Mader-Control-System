@@ -43,9 +43,10 @@
                      HorizontalAlignment="Center"
                      VerticalAlignment="Top"
                      Margin="0,200,0,0"
+                     
                       />
 
-            <Label Content="Exemplo de Label"
+            <Label Content="Área de Orçamento"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
                    Margin="0,250,0,0"/>
@@ -55,7 +56,7 @@
 
         <!-- USER AREA -->
         <Grid Name="UserArea" 
-             Visibility="Visible"
+              Visibility="Visible"
               Margin="0,153,0,0"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
@@ -68,19 +69,118 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" Width="1290" Height="700"/>
 
+            <Image Source="/assets/image/lateral_user.png"
+                   Stretch="Fill"
+                   Margin="46,50,954,30">
+
+            </Image>
+
+            <Image Source="/assets/image/fundo_user.png"
+                 Stretch="Fill"
+                 Width="878" Height="560"
+                 Margin="374,57,38,83">
+
+            </Image>
+
+            <!-- BOTÕES LATERAIS -->
+
+            <Grid Margin="32,0,954,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Primeiro Botão -->
+                <RadioButton GroupName="ButtonGroup"
+                 Width="250" Height="44"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Grid.Row="1" Grid.Column="1"
+                 Margin="10,165,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top">
+                    <!-- Espaçamento de 10 unidades ao redor do botão -->
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Image x:Name="buttonImage" Source="/assets/image/botãoClientes_desativado.png" Stretch="Fill"/>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="buttonImage" Property="Source" Value="/assets/image/botãoClientes_ativado.png"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="buttonImage" Property="Source" Value="/assets/image/botãoClientes_desativado.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+
+                <!-- Segundo Botão -->
+                <RadioButton GroupName="ButtonGroup"
+                 Width="250" Height="44"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Grid.Row="1" Grid.Column="1"
+                 Margin="10,230,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" >
+                    <!-- Mesmo espaçamento de 10 unidades ao redor do botão -->
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Image x:Name="buttonImage" Source="/assets/image/botãoClientes_desativado.png" Stretch="Fill"/>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="buttonImage" Property="Source" Value="/assets/image/botãoClientes_ativado.png"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="buttonImage" Property="Source" Value="/assets/image/botãoClientes_desativado.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+            </Grid>
+
             <!-- Exemplo de TextBox e Label -->
-            <TextBox Width="200" Height="30"
+            <TextBox Width="335" Height="24"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Margin="37,210,0,0" Text="" FontFamily="Montserrat">
+                     Margin="420,89,0,0"
+                     FontFamily="Montserrat"
+                     Background="LightGray"
+                     BorderBrush="LightGray"
+                     BorderThickness="0" TextChanged="TextBox_TextChanged"
+                     TextAlignment="Left" VerticalContentAlignment="Center">
 
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5
+                                            ">
+                                        <!-- Bordas arredondadas -->
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
 
             </TextBox>
 
-            <Label Content="Exemplo de Label" FontFamily="Montserrat Medium" FontSize="14" Foreground="#FF182859"
+            <Label Content="Nome" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="37,44,0,0"/>
+                   Margin="420,70,0,0" Height="27"/>
 
             <!--  -->
         </Grid>
@@ -90,7 +190,7 @@
         <Image Source="/assets/image/home.png"
                Margin="514,101,954,767" Stretch="Fill"
                MouseLeftButtonDown="HomeButton_Click">
-               
+
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>
@@ -134,7 +234,7 @@
         <!-- USER BUTTON -->
         <Image Source="/assets/image/user.png"
                Margin="734,101,734,767" Stretch="Fill"
-               MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
+               MouseLeftButtonDown="UserPage_MouseLeftButtonDown">
 
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
