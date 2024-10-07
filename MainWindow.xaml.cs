@@ -2,11 +2,21 @@
 
 namespace Mader_Control_System
 {
+
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            clientesButton.Checked += ToggleButton_Checked;
+            parceirosButton.Checked += ToggleButton_Checked;
+            vendedoresButton.Checked += ToggleButton_Checked;
+
+            clientesButton.Unchecked += ToggleButton_Unchecked;
+            parceirosButton.Unchecked += ToggleButton_Unchecked;
+            vendedoresButton.Unchecked += ToggleButton_Unchecked;
         }
 
         private void Close_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -54,17 +64,31 @@ namespace Mader_Control_System
           
         }
 
-
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            // Verifica qual botão foi marcado e desmarca os outros
+            if (sender == clientesButton)
+            {
+                parceirosButton.IsChecked = false;
+                vendedoresButton.IsChecked = false;
+            }
+            else if (sender == parceirosButton)
+            {
+                clientesButton.IsChecked = false;
+                vendedoresButton.IsChecked = false;
+            }
+            else if (sender == vendedoresButton)
+            {
+                clientesButton.IsChecked = false;
+                parceirosButton.IsChecked = false;
+            }
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            // O comportamento padrão quando desmarcado
         }
+
     }
 
 
