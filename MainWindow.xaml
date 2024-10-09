@@ -60,7 +60,7 @@
 
         <!-- USER AREA -->
         <Grid Name="UserArea" 
-              Visibility="Collapsed"
+              Visibility="Visible"
               Margin="0,153,0,0"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
@@ -87,7 +87,7 @@
             </Image>
 
             <!-- BOTÕES LATERAIS -->
-            
+
             <!-- BOTÃO CLIENTES -->
             <Grid>
                 <ToggleButton x:Name="clientesButton" Content="CLIENTES" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,147,994,513">
@@ -161,41 +161,81 @@
             </Grid>
 
             <!-- Conteúdo Clientes -->
-            <Label Content="Nome" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                Margin="420,70,0,0" Height="27"
-                Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBox Width="335" Height="24"
-                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="420,89,0,0"
-                    FontFamily="Montserrat"
-                    Background="LightGray"
-                     TextAlignment="Left"
-                     VerticalContentAlignment="Center"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBox.Style>
-                    <Style TargetType="TextBox">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="TextBox">
-                                    <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                        <!-- Ajuste o valor para o grau de arredondamento desejado -->
-                                        <ScrollViewer x:Name="PART_ContentHost" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
 
+            <!-- NOME -->
+            <Grid Margin="389,72,58,100"  >
+                <!-- Definindo colunas para organizar os elementos -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!--  -->
+                <!-- Definindo linhas -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <!-- Nome -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Nome" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="1" Grid.Column="0"  Height="24"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Nome Social -->
+                <Label Grid.Row="0" Grid.Column="2" Content="Nome Social" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="1" Grid.Column="2" Height="24"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+            </Grid>
+
+       
+
         </Grid>
 
 
