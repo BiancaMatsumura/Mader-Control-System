@@ -225,7 +225,7 @@
                 <xctk:MaskedTextBox Grid.Row="1" Grid.Column="2" Height="24"
                     FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
                     VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="00/00/0000" PromptChar="_"
+                    Mask="00/00/0000" PromptChar="_" 
                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <xctk:MaskedTextBox.Style>
                         <Style TargetType="xctk:MaskedTextBox">
@@ -302,11 +302,7 @@
                         </Style>
                     </TextBox.Style>
                 </TextBox>
-                
-                
-                
-                
-                
+               
                 
 
             </Grid>
@@ -315,161 +311,199 @@
 
         </Grid>
 
-
         <!-- HOME BUTTON -->
         <Image Source="/assets/image/home.png"
-               Margin="514,101,954,767" Stretch="Fill"
-               MouseLeftButtonDown="HomeButton_Click">
-
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+       Margin="514,101,954,767" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5"
+       MouseLeftButtonDown="HomeButton_Click">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- NEW FILE BUTTON -->
         <Image Source="/assets/image/file-add.png"
-               Margin="622,101,846,767" Stretch="Fill"
-               MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+       Margin="622,101,846,767" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5"
+       MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- USER BUTTON -->
         <Image Source="/assets/image/user.png"
-               Margin="734,101,734,767" Stretch="Fill"
-               MouseLeftButtonDown="UserPage_MouseLeftButtonDown">
-
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+       Margin="734,101,734,767" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5"
+       MouseLeftButtonDown="UserPage_MouseLeftButtonDown">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- BOX BUTTON -->
         <Image Source="/assets/image/box.png"
-               Margin="832,101,636,767" Stretch="Fill">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+       Margin="832,101,636,767" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- SETTINGS BUTTON -->
         <Image Source="/assets/image/settings.png"
-               Margin="934,101,534,767" Stretch="Fill">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+       Margin="934,101,534,767" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- CLOSE BUTTON -->
-        <Image Source="/assets/image/cross-small.png" 
-               Margin="1460,10,10,860" Stretch="Fill"
-               MouseLeftButtonDown="Close_MouseLeftButtonDown">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="28"/>
-                            <Setter Property="Height" Value="28"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="30"/>
-                            <Setter Property="Height" Value="30"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+        <Image Source="/assets/image/cross-small.png"
+       Margin="1460,10,10,860" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5"
+       MouseLeftButtonDown="Close_MouseLeftButtonDown">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.933" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.933" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
 
         <!-- MINIMIZE BUTTON -->
-        <Image Source="/assets/image/minus-small.png" 
-               Margin="1425,10,45,860" Stretch="Fill"
-               MouseLeftButtonDown="Minimized_MouseLeftButtonDown">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Style.Triggers>
-                        <!-- Trigger quando o mouse entra -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Width" Value="25"/>
-                            <Setter Property="Height" Value="25"/>
-                        </Trigger>
-                        <!-- Trigger quando o mouse sai (volta ao tamanho original) -->
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Width" Value="30"/>
-                            <Setter Property="Height" Value="30"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
+        <Image Source="/assets/image/minus-small.png"
+       Margin="1425,10,45,860" Stretch="Fill"
+       RenderTransformOrigin="0.5,0.5"
+       MouseLeftButtonDown="Minimized_MouseLeftButtonDown">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.833" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.833" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
-
 
 
     </Grid>
