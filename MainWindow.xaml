@@ -186,6 +186,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
                 <!-- Código de Pessoa -->
@@ -252,7 +258,7 @@
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                        
                 <TextBox Grid.Row="4" Grid.Column="0"  Height="24"
-                         Grid.ColumnSpan="5"
+                         Grid.ColumnSpan="3"
                          FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
                          VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -275,12 +281,12 @@
                 </TextBox>
 
                 <!-- Nome Social -->
-                <Label Grid.Row="3" Grid.Column="6" Content="Nome Social" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                <Label Grid.Row="3" Grid.Column="4" Content="Nome Social" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
                        
                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="4" Grid.Column="6" Height="24"
+                <TextBox Grid.Row="4" Grid.Column="4" Height="24"
                          Grid.ColumnSpan="3"
                          FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
                          VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
@@ -302,8 +308,35 @@
                         </Style>
                     </TextBox.Style>
                 </TextBox>
-               
-                
+
+                <!-- Data de Nascimento -->
+                <Label Grid.Row="3" Grid.Column="8" Content="Data de Nascimento" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <xctk:MaskedTextBox Grid.Row="4" Grid.Column="8" Height="24"
+                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                    Mask="00/00/0000" PromptChar="_" 
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <xctk:MaskedTextBox.Style>
+                        <Style TargetType="xctk:MaskedTextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </xctk:MaskedTextBox.Style>
+                </xctk:MaskedTextBox>
+
 
             </Grid>
 
