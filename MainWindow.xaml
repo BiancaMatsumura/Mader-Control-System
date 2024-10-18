@@ -13,7 +13,7 @@
     <Window.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
-    
+
     <Grid>
         <Border 
             Background="#F2F2F2" CornerRadius="10">
@@ -61,7 +61,7 @@
 
         <!-- USER AREA -->
         <Grid Name="UserArea" 
-              Visibility="Visible"
+              Visibility="Collapsed"
               Margin="0,153,0,0"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
@@ -82,10 +82,7 @@
 
             <Image Source="/assets/image/fundo_user.png"
                  Stretch="Fill"
-                 Width="878" Height="560"
-                 Margin="374,57,38,83">
-
-            </Image>
+                 Margin="353,50,38,83"/>
 
             <!-- BOTÕES LATERAIS -->
 
@@ -192,6 +189,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
                 <!-- Código de Pessoa -->
@@ -256,7 +263,7 @@
                        
                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                       
+
                 <TextBox Grid.Row="4" Grid.Column="0"  Height="24"
                          Grid.ColumnSpan="3"
                          FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
@@ -311,8 +318,8 @@
 
                 <!-- Data de Nascimento -->
                 <Label Grid.Row="3" Grid.Column="8" Content="Data de Nascimento" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                         HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="4" Grid.Column="8" Height="24"
                     FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
@@ -337,10 +344,722 @@
                     </xctk:MaskedTextBox.Style>
                 </xctk:MaskedTextBox>
 
+                <!-- CPF -->
+                <Label Grid.Row="6" Grid.Column="0" Content="CPF" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="0" Height="24"
+                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                    Mask="000,000,000-00" PromptChar="_"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <xctk:MaskedTextBox.Style>
+                        <Style TargetType="xctk:MaskedTextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </xctk:MaskedTextBox.Style>
+                </xctk:MaskedTextBox>
+
+                <!-- RG -->
+                <Label Grid.Row="6" Grid.Column="2" Content="RG" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="2" Height="24"
+                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                    Mask="00,000,000-0" PromptChar="_"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <xctk:MaskedTextBox.Style>
+                        <Style TargetType="xctk:MaskedTextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </xctk:MaskedTextBox.Style>
+                </xctk:MaskedTextBox>
+
+                <!-- CNPJ -->
+                <Label Grid.Row="6" Grid.Column="4" Content="CNPJ" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="4" Height="24"
+                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                    Mask="00,000,000/0000-00" PromptChar="_"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <xctk:MaskedTextBox.Style>
+                        <Style TargetType="xctk:MaskedTextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </xctk:MaskedTextBox.Style>
+                </xctk:MaskedTextBox>
+
+                <!-- IE (Sem máscara) -->
+                <Label Grid.Row="6" Grid.Column="6" Content="IE" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="7" Grid.Column="6" Height="24"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
+                        VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+                <!-- Celular 01 -->
+                <Label Grid.Row="9" Grid.Column="0" Content="Celular 01" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="10" Grid.Column="0" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Celular 02 -->
+                <Label Grid.Row="9" Grid.Column="2" Content="Celular 02" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="10" Grid.Column="2" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Email 01 -->
+                <Label Grid.Row="9" Grid.Column="4" Content="Email 01" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="10" Grid.Column="4" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Email 02 -->
+                <Label Grid.Row="9" Grid.Column="6" Content="Email 02" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="10" Grid.Column="6" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Endereço -->
+                <Label Grid.Row="12" Grid.Column="0" Content="Endereço" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="13" Grid.Column="0" Height="24"
+                         Grid.ColumnSpan="3"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Bairro -->
+                <Label Grid.Row="12" Grid.Column="4" Content="Bairro" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="13" Grid.Column="4" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Cidade -->
+                <Label Grid.Row="12" Grid.Column="6" Content="Cidade" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="13" Grid.Column="6" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Estado -->
+                <Label Grid.Row="12" Grid.Column="8" Content="Estado" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="13" Grid.Column="8" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- CEP -->
+                <Label Grid.Row="15" Grid.Column="0" Content="CEP" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="16" Grid.Column="0" Height="24"
+                         Grid.ColumnSpan="1"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Complemento -->
+                <Label Grid.Row="15" Grid.Column="2" Content="Complemento" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="16" Grid.Column="2" Height="24"
+                         Grid.ColumnSpan="7"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Referências para Entrega -->
+                <Label Grid.Row="18" Grid.Column="0" Content="Referências para Entrega" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="19" Grid.Column="0" 
+                         Grid.ColumnSpan="3"
+                         Grid.RowSpan="3"
+                         VerticalAlignment="Stretch"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Top"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <!-- Observações Gerais -->
+                <Label Grid.Row="18" Grid.Column="4" Content="Observações Gerais" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBox Grid.Row="19" Grid.Column="4" 
+                         Grid.RowSpan="3"
+                         Grid.ColumnSpan="5"
+                         VerticalAlignment="Stretch"
+                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
+                         VerticalContentAlignment="Top"  HorizontalAlignment="Stretch"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
 
             </Grid>
 
-       
+            <!-- BOTÃO SAVE -->
+            <Button x:Name="saveButton" Content="SALVAR" FontFamily="Montserrat Regular" FontSize="15"
+                HorizontalContentAlignment="Center" Margin="983,622,184,30"
+                Background="#8A90A6"
+                Click="SaveButton_Click"
+                Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="#F2F2F2 "/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#D9D9D9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!-- BOTÃO CANCELAR -->
+            <Button x:Name="cancelButton" Content="CANCELAR" FontFamily="Montserrat Regular" FontSize="15"
+                HorizontalContentAlignment="Center" Margin="1120,622,47,30"
+                Background="#F2F2F2"
+                Click="CancelButton_Click"
+                 Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="#585858"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#D9D9D9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            
+            <!-- Back All Button -->
+            <Image Source=" /assets/image/backAll_Button.png"
+                    Margin="353,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5"
+                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- Back Button -->
+            <Image Source=" /assets/image/back_Button.png"
+                    Margin="385,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- Next Button -->
+            <Image Source=" /assets/image/next_Button.png"
+                    Margin="417,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- Next All Button -->
+            <Image Source=" /assets/image/nextAll_Button.png"
+                    Margin="449,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- New Person Button -->
+            <Image Source=" /assets/image/newPerson.png"
+                    Margin="490,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- Editar Button -->
+            <Image Source=" /assets/image/editButton.png"
+                    Margin="528,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <!-- Delete Button -->
+            <Image Source=" /assets/image/deleteButton.png"
+                    Margin="564,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
+                    RenderTransformOrigin="0.5,0.5"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+
+
+
+
 
         </Grid>
 

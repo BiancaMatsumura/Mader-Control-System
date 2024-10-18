@@ -11,10 +11,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="assets\image\backAll_Button.png" />
+		<None Remove="assets\image\back_Button.png" />
 		<None Remove="assets\image\botãoClientes_ativado.png" />
 		<None Remove="assets\image\botãoClientes_desativado.png" />
 		<None Remove="assets\image\box.png" />
 		<None Remove="assets\image\cross-small.png" />
+		<None Remove="assets\image\deleteButton.png" />
+		<None Remove="assets\image\editButton.png" />
 		<None Remove="assets\image\file-add.png" />
 		<None Remove="assets\image\foreground.png" />
 		<None Remove="assets\image\fundo1.png" />
@@ -23,6 +27,9 @@
 		<None Remove="assets\image\lateral_user.png" />
 		<None Remove="assets\image\logo.png" />
 		<None Remove="assets\image\minus-small.png" />
+		<None Remove="assets\image\newPerson.png" />
+		<None Remove="assets\image\nextAll_Button.png" />
+		<None Remove="assets\image\next_Button.png" />
 		<None Remove="assets\image\settings.png" />
 		<None Remove="assets\image\user.png" />
 	</ItemGroup>
@@ -39,10 +46,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="assets\image\backAll_Button.png" />
+		<Resource Include="assets\image\back_Button.png" />
 		<Resource Include="assets\image\botãoClientes_ativado.png" />
 		<Resource Include="assets\image\botãoClientes_desativado.png" />
 		<Resource Include="assets\image\box.png" />
 		<Resource Include="assets\image\cross-small.png" />
+		<Resource Include="assets\image\deleteButton.png" />
+		<Resource Include="assets\image\editButton.png" />
 		<Resource Include="assets\image\file-add.png" />
 		<Resource Include="assets\image\foreground.png" />
 		<Resource Include="assets\image\fundo1.png" />
@@ -51,6 +62,9 @@
 		<Resource Include="assets\image\lateral_user.png" />
 		<Resource Include="assets\image\logo.png" />
 		<Resource Include="assets\image\minus-small.png" />
+		<Resource Include="assets\image\newPerson.png" />
+		<Resource Include="assets\image\nextAll_Button.png" />
+		<Resource Include="assets\image\next_Button.png" />
 		<Resource Include="assets\image\settings.png" />
 		<Resource Include="assets\image\user.png" />
 	</ItemGroup>

@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Mader_Control_System
 {
@@ -88,6 +91,44 @@ namespace Mader_Control_System
         {
             // O comportamento padrão quando desmarcado
         }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Mudar a cor de fundo do botão ao ser clicado
+            saveButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#757A8B")); // Altere para a cor desejada
+
+            // Criar um DispatcherTimer para retornar à cor original
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(0.1) // Tempo de espera antes de voltar
+            };
+            timer.Tick += (s, args) =>
+            {
+                saveButton.Background = new SolidColorBrush(Color.FromRgb(138, 144, 166)); // Cor original
+                timer.Stop(); // Parar o timer
+            };
+            timer.Start(); // Iniciar o timer
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Mudar a cor de fundo do botão ao ser clicado
+            cancelButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D9D9D9")); // Altere para a cor desejada
+
+            // Criar um DispatcherTimer para retornar à cor original
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(0.1) // Tempo de espera antes de voltar
+            };
+            timer.Tick += (s, args) =>
+            {
+                cancelButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F2F2F2")); // Cor original
+                timer.Stop(); // Parar o timer
+            };
+            timer.Start(); // Iniciar o timer
+        }
+
+
 
     }
 
