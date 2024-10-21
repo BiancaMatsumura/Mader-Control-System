@@ -12,6 +12,111 @@
 
     <Window.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        
+        <!-- Estilo de Animação de Botão -->
+        <Style x:Key="BotãoAnimado" TargetType="Image">
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                         To="0.875" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                         To="0.875" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                         To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                         To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Estilo Botão Lateral -->
+        <Style x:Key="LateralButton" TargetType="ToggleButton">
+            <Setter Property="Background" Value="#F2F2F2"/>
+            <Setter Property="Foreground" Value="#585858"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0,5,5,0" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="33,0,0,0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="#D9D9D9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Estilo para Etiquetas -->
+        <Style x:Key="EstiloEtiqueta" TargetType="Label">
+            <Setter Property="FontFamily" Value="Montserrat Medium"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#FF182859"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="27"/>
+        </Style>
+
+        <!-- Estilo para os TextBox -->
+        <Style x:Key="EstiloTextBox" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Estilo para o MaskedTextBox -->
+        <Style x:Key="EstiloMaskedTextBox" TargetType="xctk:MaskedTextBox">
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="xctk:MaskedTextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -87,80 +192,19 @@
             <!-- BOTÕES LATERAIS -->
 
             <!-- BOTÃO CLIENTES -->
-            <Grid>
-                <ToggleButton x:Name="clientesButton" Content="CLIENTES" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,147,994,513">
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="0,5,5,0"  BorderThickness="0">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="33,0,0,0" />
-                            </Border>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Background" Value="#F2F2F2"/>
-                            <Setter Property="Foreground" Value="#585858"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Background" Value="#D9D9D9"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ToggleButton.Style>
-                </ToggleButton>
-            </Grid>
+            <ToggleButton x:Name="clientesButton" Content="CLIENTES" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,147,994,513"
+                  Style="{StaticResource LateralButton}"/>
 
             <!-- BOTÃO PARCEIROS -->
-            <Grid>
-                <ToggleButton x:Name="parceirosButton" Content="PARCEIROS" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,212,994,448">
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="0,5,5,0"  BorderThickness="0">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="33,0,0,0" />
-                            </Border>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Background" Value="#F2F2F2"/>
-                            <Setter Property="Foreground" Value="#585858"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Background" Value="#D9D9D9"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ToggleButton.Style>
-                </ToggleButton>
-            </Grid>
+            <ToggleButton x:Name="parceirosButton" Content="PARCEIROS" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,212,994,448"
+                  Style="{StaticResource LateralButton}"/>
 
             <!-- BOTÃO VENDEDORES -->
-            <Grid>
-                <ToggleButton x:Name="vendedoresButton" Content="VENDEDORES" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,277,994,383">
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="0,5,5,0"  BorderThickness="0">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="33,0,0,0" />
-                            </Border>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Background" Value="#F2F2F2"/>
-                            <Setter Property="Foreground" Value="#585858"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Background" Value="#D9D9D9"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ToggleButton.Style>
-                </ToggleButton>
-            </Grid>
+            <ToggleButton x:Name="vendedoresButton" Content="VENDEDORES" FontFamily="Montserrat Regular" FontSize="15" HorizontalContentAlignment="Center" Margin="46,277,994,383"
+                  Style="{StaticResource LateralButton}"/>
 
-            <!-- Conteúdo Clientes -->
-
-            <!-- NOME -->
+           
+            <!-- CONTEÚDO CLIENTES -->
             <Grid Margin="389,72,58,100"  >
                 <!-- Definindo colunas para organizar os elementos -->
                 <Grid.ColumnDefinitions>
@@ -202,611 +246,210 @@
                 </Grid.RowDefinitions>
 
                 <!-- Código de Pessoa -->
-                <Label Grid.Row="0" Grid.Column="0" Content="Código" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="0" Grid.Column="0" Content="Código"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="1" Grid.Column="0"  Height="24"
-                         
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="1" Grid.Column="0" Height="24"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Data de Cadastro -->
-                <Label Grid.Row="0" Grid.Column="2" Content="Data de Cadastro" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="0" Grid.Column="2" Content="Data de Cadastro"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="1" Grid.Column="2" Height="24"
-                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="00/00/0000" PromptChar="_" 
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <xctk:MaskedTextBox.Style>
-                        <Style TargetType="xctk:MaskedTextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </xctk:MaskedTextBox.Style>
-                </xctk:MaskedTextBox>
+                                    Mask="00/00/0000" PromptChar=" " 
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Nome -->
-                <Label Grid.Row="3" Grid.Column="0" Content="Nome" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="3" Grid.Column="0" Content="Nome"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="4" Grid.Column="0"  Height="24"
-                         Grid.ColumnSpan="3"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="4" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Nome Social -->
-                <Label Grid.Row="3" Grid.Column="4" Content="Nome Social" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="3" Grid.Column="4" Content="Nome Social"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="4" Grid.Column="4" Height="24"
-                         Grid.ColumnSpan="3"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="4" Grid.Column="4" Height="24" Grid.ColumnSpan="3"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Data de Nascimento -->
-                <Label Grid.Row="3" Grid.Column="8" Content="Data de Nascimento" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                         HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="3" Grid.Column="8" Content="Data de Nascimento"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="4" Grid.Column="8" Height="24"
-                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="00/00/0000" PromptChar="_" 
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <xctk:MaskedTextBox.Style>
-                        <Style TargetType="xctk:MaskedTextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </xctk:MaskedTextBox.Style>
-                </xctk:MaskedTextBox>
+                                    Mask="00/00/0000" PromptChar=" " 
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- CPF -->
-                <Label Grid.Row="6" Grid.Column="0" Content="CPF" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="CPF"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="7" Grid.Column="0" Height="24"
-                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="000,000,000-00" PromptChar="_"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <xctk:MaskedTextBox.Style>
-                        <Style TargetType="xctk:MaskedTextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </xctk:MaskedTextBox.Style>
-                </xctk:MaskedTextBox>
+                                    Mask="000,000,000-00" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- RG -->
-                <Label Grid.Row="6" Grid.Column="2" Content="RG" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="6" Grid.Column="2" Content="RG"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="7" Grid.Column="2" Height="24"
-                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="00,000,000-0" PromptChar="_"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <xctk:MaskedTextBox.Style>
-                        <Style TargetType="xctk:MaskedTextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </xctk:MaskedTextBox.Style>
-                </xctk:MaskedTextBox>
+                                    Mask="00,000,000-0" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- CNPJ -->
-                <Label Grid.Row="6" Grid.Column="4" Content="CNPJ" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="6" Grid.Column="4" Content="CNPJ"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <xctk:MaskedTextBox Grid.Row="7" Grid.Column="4" Height="24"
-                    FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                    Mask="00,000,000/0000-00" PromptChar="_"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <xctk:MaskedTextBox.Style>
-                        <Style TargetType="xctk:MaskedTextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="xctk:MaskedTextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </xctk:MaskedTextBox.Style>
-                </xctk:MaskedTextBox>
+                                    Mask="00,000,000/0000-00" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- IE (Sem máscara) -->
-                <Label Grid.Row="6" Grid.Column="6" Content="IE" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="6" Grid.Column="6" Content="IE"
+                       Style="{StaticResource EstiloEtiqueta}"
+                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="7" Grid.Column="6" Height="24"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Center"
-                        VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
-                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-
+                <TextBox Grid.Row="7" Grid.Column="6" Height="24" Grid.ColumnSpan="3"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Celular 01 -->
-                <Label Grid.Row="9" Grid.Column="0" Content="Celular 01" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="9" Grid.Column="0" Content="Celular 01"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="0" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <xctk:MaskedTextBox Grid.Row="10" Grid.Column="0" Height="24"
+                                    Mask="(00) 00000-0000" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
 
                 <!-- Celular 02 -->
-                <Label Grid.Row="9" Grid.Column="2" Content="Celular 02" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="9" Grid.Column="2" Content="Celular 02"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="2" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <xctk:MaskedTextBox Grid.Row="10" Grid.Column="2" Height="24"
+                                    Mask="(00) 00000-0000" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Email 01 -->
-                <Label Grid.Row="9" Grid.Column="4" Content="Email 01" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="9" Grid.Column="4" Content="Email 01"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="4" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="10" Grid.Column="4" Height="24" 
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Email 02 -->
-                <Label Grid.Row="9" Grid.Column="6" Content="Email 02" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="9" Grid.Column="6" Content="Email 02"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="6" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="10" Grid.Column="6" Height="24" 
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Endereço -->
-                <Label Grid.Row="12" Grid.Column="0" Content="Endereço" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="12" Grid.Column="0" Content="Endereço"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="0" Height="24"
-                         Grid.ColumnSpan="3"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="13" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Bairro -->
-                <Label Grid.Row="12" Grid.Column="4" Content="Bairro" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="12" Grid.Column="4" Content="Bairro"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="4" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="13" Grid.Column="4" Height="24" 
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Cidade -->
-                <Label Grid.Row="12" Grid.Column="6" Content="Cidade" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="12" Grid.Column="6" Content="Cidade"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="6" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="13" Grid.Column="6" Height="24" 
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Estado -->
-                <Label Grid.Row="12" Grid.Column="8" Content="Estado" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="12" Grid.Column="8" Content="Estado"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="8" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="13" Grid.Column="85" Height="24" 
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- CEP -->
-                <Label Grid.Row="15" Grid.Column="0" Content="CEP" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="15" Grid.Column="0" Content="CEP"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="16" Grid.Column="0" Height="24"
-                         Grid.ColumnSpan="1"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <xctk:MaskedTextBox Grid.Row="16" Grid.Column="0" Height="24"
+                                    Mask="00000-000" PromptChar="_"
+                                    Style="{StaticResource EstiloMaskedTextBox}"
+                                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Complemento -->
-                <Label Grid.Row="15" Grid.Column="2" Content="Complemento" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
+                <Label Grid.Row="15" Grid.Column="2" Content="Estado"
+                       Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="16" Grid.Column="2" Height="24"
-                         Grid.ColumnSpan="7"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Center"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="16" Grid.Column="2" Height="24" Grid.ColumnSpan="7"
+                         Style="{StaticResource EstiloTextBox}"
+                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
 
                 <!-- Referências para Entrega -->
-                <Label Grid.Row="18" Grid.Column="0" Content="Referências para Entrega" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       Grid.ColumnSpan="2"
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="18" Grid.Column="0" Content="Referências para Entrega"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource EstiloEtiqueta}"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="19" Grid.Column="0" 
-                         Grid.ColumnSpan="3"
-                         Grid.RowSpan="3"
-                         VerticalAlignment="Stretch"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Top"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="19" Grid.Column="0"
+                        Grid.ColumnSpan="3" Grid.RowSpan="3"
+                        VerticalAlignment="Stretch" TextAlignment="Left" VerticalContentAlignment="Top"
+                         Style="{StaticResource EstiloTextBox}"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Observações Gerais -->
-                <Label Grid.Row="18" Grid.Column="4" Content="Observações Gerais" FontFamily="Montserrat Medium" FontSize="12" Foreground="#FF182859"
-                       Grid.ColumnSpan="2"
-                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="27"
-                       Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Grid.Row="18" Grid.Column="4" Content="Observações Gerais"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource EstiloEtiqueta}"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="19" Grid.Column="4" 
-                         Grid.RowSpan="3"
-                         Grid.ColumnSpan="5"
-                         VerticalAlignment="Stretch"
-                         FontFamily="Montserrat" Background="LightGray" TextAlignment="Left"
-                         VerticalContentAlignment="Top"  HorizontalAlignment="Stretch"
-                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TextBox">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                            CornerRadius="5">
-                                            <ScrollViewer x:Name="PART_ContentHost" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                <TextBox Grid.Row="19" Grid.Column="4"
+                        Grid.RowSpan="3" Grid.ColumnSpan="5"
+                        VerticalAlignment="Stretch" TextAlignment="Left" VerticalContentAlignment="Top"
+                        Style="{StaticResource EstiloTextBox}"
+                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
 
             </Grid>
 
@@ -862,401 +505,105 @@
 
             
             <!-- Back All Button -->
-            <Image Source=" /assets/image/backAll_Button.png"
-                    Margin="353,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
-                    RenderTransformOrigin="0.5,0.5"
-                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+            <Image Source="/assets/image/backAll_Button.png"
+                   Margin="353,621,0,47" Width="32" Height="32"
+                   HorizontalAlignment="Left"
+                   Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Style="{StaticResource BotãoAnimado}"/>
 
             <!-- Back Button -->
             <Image Source=" /assets/image/back_Button.png"
                     Margin="385,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5" 
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Style="{StaticResource BotãoAnimado}"/>
 
-            <!-- Next Button -->
+                <!-- Next Button -->
             <Image Source=" /assets/image/next_Button.png"
                     Margin="417,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5" 
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Style="{StaticResource BotãoAnimado}"/>
 
             <!-- Next All Button -->
             <Image Source=" /assets/image/nextAll_Button.png"
                     Margin="449,621,0,47" Width="32" Height="32" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Style="{StaticResource BotãoAnimado}"/>
 
             <!-- New Person Button -->
             <Image Source=" /assets/image/newPerson.png"
                     Margin="490,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Style="{StaticResource BotãoAnimado}"/>
 
-            <!-- Editar Button -->
+                <!-- Editar Button -->
             <Image Source=" /assets/image/editButton.png"
                     Margin="528,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5" 
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Style="{StaticResource BotãoAnimado}"/>
 
-            <!-- Delete Button -->
+                <!-- Delete Button -->
             <Image Source=" /assets/image/deleteButton.png"
                     Margin="564,626,0,50" Width="24" Height="24" HorizontalAlignment="Left"
                     RenderTransformOrigin="0.5,0.5"
-                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
-
-
-
-
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Style="{StaticResource BotãoAnimado}"/>
 
         </Grid>
 
         <!-- HOME BUTTON -->
         <Image Source="/assets/image/home.png"
-       Margin="514,101,954,767" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5"
-       MouseLeftButtonDown="HomeButton_Click">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                Margin="514,101,954,767" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+                MouseLeftButtonDown="HomeButton_Click"
+                Style="{StaticResource BotãoAnimado}"/>
+
 
         <!-- NEW FILE BUTTON -->
         <Image Source="/assets/image/file-add.png"
-       Margin="622,101,846,767" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5"
-       MouseLeftButtonDown="FileAdd_MouseLeftButtonDown">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                 Margin="622,101,846,767" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+                MouseLeftButtonDown="FileAdd_MouseLeftButtonDown"
+                Style="{StaticResource BotãoAnimado}"/>
 
-        <!-- USER BUTTON -->
+            <!-- USER BUTTON -->
         <Image Source="/assets/image/user.png"
-       Margin="734,101,734,767" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5"
-       MouseLeftButtonDown="UserPage_MouseLeftButtonDown">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                Margin="734,101,734,767" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+                MouseLeftButtonDown="UserPage_MouseLeftButtonDown"
+               Style="{StaticResource BotãoAnimado}"/>
+                
 
         <!-- BOX BUTTON -->
         <Image Source="/assets/image/box.png"
-       Margin="832,101,636,767" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                Margin="832,101,636,767" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+               Style="{StaticResource BotãoAnimado}"/>
+
 
         <!-- SETTINGS BUTTON -->
         <Image Source="/assets/image/settings.png"
-       Margin="934,101,534,767" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.875" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.875" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                 Margin="934,101,534,767" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+               Style="{StaticResource BotãoAnimado}"/>
 
-        <!-- CLOSE BUTTON -->
+            <!-- CLOSE BUTTON -->
         <Image Source="/assets/image/cross-small.png"
-       Margin="1460,10,10,860" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5"
-       MouseLeftButtonDown="Close_MouseLeftButtonDown">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.933" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.933" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+                 Margin="1460,10,10,860" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+                MouseLeftButtonDown="Close_MouseLeftButtonDown"
+               Style="{StaticResource BotãoAnimado}"/>
 
-        <!-- MINIMIZE BUTTON -->
+            <!-- MINIMIZE BUTTON -->
         <Image Source="/assets/image/minus-small.png"
-       Margin="1425,10,45,860" Stretch="Fill"
-       RenderTransformOrigin="0.5,0.5"
-       MouseLeftButtonDown="Minimized_MouseLeftButtonDown">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.833" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.833" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
-
+                Margin="1425,10,45,860" Stretch="Fill"
+                RenderTransformOrigin="0.5,0.5"
+                MouseLeftButtonDown="Minimized_MouseLeftButtonDown"
+               Style="{StaticResource BotãoAnimado}"/>
 
     </Grid>
 </Window>
