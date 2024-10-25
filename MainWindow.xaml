@@ -205,7 +205,7 @@
 
            
             <!-- CONTEÚDO CLIENTES -->
-            <Grid Margin="389,72,58,100"  >
+            <Grid Margin="389,63,58,100"  >
                 <!-- Definindo colunas para organizar os elementos -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -417,7 +417,7 @@
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <!-- Complemento -->
-                <Label Grid.Row="15" Grid.Column="2" Content="Estado"
+                <Label Grid.Row="15" Grid.Column="2" Content="Complemento"
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 

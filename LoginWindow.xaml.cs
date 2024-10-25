@@ -1,93 +1,23 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Mader_Control_System.Login
 {
     public partial class LoginWindow : Window
     {
-        private string connectionString = "Data Source=users.db;Version=3;";
-
-        public class DatabaseHelper
-        {
-            private string connectionString = "Data Source=users.db;Version=3;";
-
-            public DatabaseHelper()
-            {
-                CreateDatabase();
-                CreateUsersTable();
-                InsertDefaultUser();
-            }
-
-            // Método para criar o banco de dados se não existir
-            private void CreateDatabase()
-            {
-                if (!System.IO.File.Exists("users.db"))
-                {
-                    SQLiteConnection.CreateFile("users.db");
-                    Console.WriteLine("Banco de dados criado com sucesso.");
-                }
-            }
-
-            // Método para criar a tabela de usuários
-            private void CreateUsersTable()
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-                {
-                    conn.Open();
-                    string tableCommand = @"CREATE TABLE IF NOT EXISTS Users (
-                                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                        Username TEXT NOT NULL UNIQUE,
-                                        Password TEXT NOT NULL
-                                        );";
-
-                    SQLiteCommand createTable = new SQLiteCommand(tableCommand, conn);
-                    createTable.ExecuteNonQuery();
-                    conn.Close();
-                    Console.WriteLine("Tabela 'Users' verificada/criada.");
-                }
-            }
-
-            // Método para inserir um usuário padrão
-            private void InsertDefaultUser()
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-                {
-                    conn.Open();
-
-                    // Verifica se o usuário 'admin' já existe
-                    string checkUser = "SELECT COUNT(1) FROM Users WHERE Username = @Username";
-                    SQLiteCommand cmdCheck = new SQLiteCommand(checkUser, conn);
-                    cmdCheck.Parameters.AddWithValue("@Username", "admin");
-                    int userCount = Convert.ToInt32(cmdCheck.ExecuteScalar());
-
-                    if (userCount == 0)
-                    {
-                        string insertCommand = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
-                        SQLiteCommand insertCmd = new SQLiteCommand(insertCommand, conn);
-                        insertCmd.Parameters.AddWithValue("@Username", "admin");
-                        insertCmd.Parameters.AddWithValue("@Password", "1234"); // Em produção, use hashing
-                        insertCmd.ExecuteNonQuery();
-                        Console.WriteLine("Usuário 'admin' inserido.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Usuário 'admin' já existe.");
-                    }
-
-                    conn.Close();
-                }
-            }
-        }
-
+        private readonly DatabaseHelper dbHelper;
 
         public LoginWindow()
         {
             InitializeComponent();
+            dbHelper = new DatabaseHelper();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Obter o texto inserido na TextBox e PasswordBox
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordTextBox.Password.Trim();
 
@@ -97,13 +27,10 @@ namespace Mader_Control_System.Login
                 return;
             }
 
-            if (IsUserValid(username, password))
+            bool isValid = await dbHelper.IsUserValidAsync(username, password);
+            if (isValid)
             {
-                // Criar uma instância da nova janela
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-
-                // Fechar a janela de login
+                new MainWindow().Show();
                 this.Close();
             }
             else
@@ -112,30 +39,164 @@ namespace Mader_Control_System.Login
             }
         }
 
-        private bool IsUserValid(string username, string password)
+        public class DatabaseHelper
         {
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            private readonly string connectionString = "Data Source=users.db;Version=3;";
+
+            public DatabaseHelper()
             {
-                try
+                InitializeDatabase();
+            }
+
+            private void InitializeDatabase()
+            {
+                if (!File.Exists("users.db"))
+                {
+                    SQLiteConnection.CreateFile("users.db");
+                    Console.WriteLine("Banco de dados criado com sucesso.");
+                }
+
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
                 {
                     conn.Open();
-
-                    string query = "SELECT COUNT(1) FROM Users WHERE Username=@Username AND Password=@Password";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password);
-
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    return count > 0;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    CreateUsersTable(conn);
+                    InsertDefaultUser(conn);
                 }
             }
-        }
 
+            private void CreateUsersTable(SQLiteConnection conn)
+            {
+                string tableCommand = @"CREATE TABLE IF NOT EXISTS Users (
+                                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                        Username TEXT NOT NULL UNIQUE,
+                                        Password TEXT NOT NULL);";
+
+                using (SQLiteCommand createTable = new SQLiteCommand(tableCommand, conn))
+                {
+                    createTable.ExecuteNonQuery();
+                }
+                Console.WriteLine("Tabela 'Users' verificada/criada.");
+            }
+
+            private void InsertDefaultUser(SQLiteConnection conn)
+            {
+                string checkUserQuery = "SELECT COUNT(1) FROM Users WHERE Username = @Username";
+                using (SQLiteCommand cmdCheck = new SQLiteCommand(checkUserQuery, conn))
+                {
+                    cmdCheck.Parameters.AddWithValue("@Username", "admin");
+                    int userCount = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                    if (userCount == 0)
+                    {
+                        string insertCommand = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                        using (SQLiteCommand insertCmd = new SQLiteCommand(insertCommand, conn))
+                        {
+                            insertCmd.Parameters.AddWithValue("@Username", "admin");
+                            insertCmd.Parameters.AddWithValue("@Password", "1234"); // Em produção, use hashing
+                            insertCmd.ExecuteNonQuery();
+                        }
+                        Console.WriteLine("Usuário 'admin' inserido.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Usuário 'admin' já existe.");
+                    }
+                }
+            }
+
+            public async Task<bool> IsUserValidAsync(string username, string password)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string query = "SELECT COUNT(1) FROM Users WHERE Username=@Username AND Password=@Password";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password);
+                        int count = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                        return count > 0;
+                    }
+                }
+            }
+
+            // Método para adicionar um usuário
+            public async Task<bool> AddUserAsync(string username, string password)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password);
+                        try
+                        {
+                            await cmd.ExecuteNonQueryAsync();
+                            return true;
+                        }
+                        catch (SQLiteException ex)
+                        {
+                            Console.WriteLine("Erro ao adicionar usuário: " + ex.Message);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            // Método para deletar um usuário
+            public async Task<bool> DeleteUserAsync(string username)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = "DELETE FROM Users WHERE Username=@Username";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        try
+                        {
+                            int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                            return rowsAffected > 0;
+                        }
+                        catch (SQLiteException ex)
+                        {
+                            Console.WriteLine("Erro ao deletar usuário: " + ex.Message);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            // Método para atualizar a senha de um usuário
+            public async Task<bool> UpdateUserAsync(string username, string newPassword)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = "UPDATE Users SET Password=@Password WHERE Username=@Username";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", newPassword);
+                        try
+                        {
+                            int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                            return rowsAffected > 0;
+                        }
+                        catch (SQLiteException ex)
+                        {
+                            Console.WriteLine("Erro ao atualizar usuário: " + ex.Message);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+
+        }
     }
 }
+

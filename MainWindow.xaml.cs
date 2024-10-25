@@ -5,8 +5,6 @@ using System.Windows.Threading;
 
 namespace Mader_Control_System
 {
-
-
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -24,52 +22,37 @@ namespace Mader_Control_System
 
         private void Close_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
             this.Close();
         }
 
         private void Minimized_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
             this.WindowState = WindowState.Minimized;
         }
 
         private void FileAdd_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (NewFileArea.Visibility == Visibility.Collapsed)
-            {
-                NewFileArea.Visibility = Visibility.Visible;
-            }
-
+            ToggleVisibility(NewFileArea);
         }
+
         private void UserPage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (UserArea.Visibility == Visibility.Collapsed)
-            {
-                UserArea.Visibility = Visibility.Visible;
-            }
-
+            ToggleVisibility(UserArea);
         }
 
         private void HomeButton_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
-            if (NewFileArea.Visibility == Visibility.Visible)
-            {
-                NewFileArea.Visibility = Visibility.Collapsed;
-            }
+            NewFileArea.Visibility = Visibility.Collapsed;
+            UserArea.Visibility = Visibility.Collapsed;
+        }
 
-            
-            if (UserArea.Visibility == Visibility.Visible)
-            {
-                UserArea.Visibility = Visibility.Collapsed;
-            }
-          
+        private void ToggleVisibility(UIElement element)
+        {
+            element.Visibility = element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            // Verifica qual botão foi marcado e desmarca os outros
             if (sender == clientesButton)
             {
                 parceirosButton.IsChecked = false;
@@ -89,48 +72,29 @@ namespace Mader_Control_System
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            // O comportamento padrão quando desmarcado
+            // Comportamento padrão
+        }
+
+        private void ChangeButtonColor(Button button, string colorHex, string originalColorHex, double seconds = 0.1)
+        {
+            button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colorHex));
+            DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(seconds) };
+            timer.Tick += (s, args) =>
+            {
+                button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(originalColorHex));
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mudar a cor de fundo do botão ao ser clicado
-            saveButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#757A8B")); // Altere para a cor desejada
-
-            // Criar um DispatcherTimer para retornar à cor original
-            DispatcherTimer timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(0.1) // Tempo de espera antes de voltar
-            };
-            timer.Tick += (s, args) =>
-            {
-                saveButton.Background = new SolidColorBrush(Color.FromRgb(138, 144, 166)); // Cor original
-                timer.Stop(); // Parar o timer
-            };
-            timer.Start(); // Iniciar o timer
+            ChangeButtonColor(saveButton, "#757A8B", "#8A90A6");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mudar a cor de fundo do botão ao ser clicado
-            cancelButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D9D9D9")); // Altere para a cor desejada
-
-            // Criar um DispatcherTimer para retornar à cor original
-            DispatcherTimer timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(0.1) // Tempo de espera antes de voltar
-            };
-            timer.Tick += (s, args) =>
-            {
-                cancelButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F2F2F2")); // Cor original
-                timer.Stop(); // Parar o timer
-            };
-            timer.Start(); // Iniciar o timer
+            ChangeButtonColor(cancelButton, "#D9D9D9", "#F2F2F2");
         }
-
-
-
     }
-
-
 }
