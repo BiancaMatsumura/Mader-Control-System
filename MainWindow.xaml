@@ -250,7 +250,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="1" Grid.Column="0" Height="24"
+                <TextBox x:Name="IdTextBox" Grid.Row="1" Grid.Column="0" Height="24"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -259,7 +259,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="1" Grid.Column="2" Height="24"
+                <xctk:MaskedTextBox x:Name="DataCadastroTextBox" Grid.Column="2" Height="24"
                                     Mask="00/00/0000" PromptChar=" " 
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -269,7 +269,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="4" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
+                <TextBox x:Name="NomeTextBox" Grid.Row="4" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -278,7 +278,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="4" Grid.Column="4" Height="24" Grid.ColumnSpan="3"
+                <TextBox x:Name="NomeSocialTextBox" Grid.Row="4" Grid.Column="4" Height="24" Grid.ColumnSpan="3"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -287,7 +287,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="4" Grid.Column="8" Height="24"
+                <xctk:MaskedTextBox x:Name="DataNascTextBox" Grid.Row="4" Grid.Column="8" Height="24"
                                     Mask="00/00/0000" PromptChar=" " 
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -297,7 +297,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="0" Height="24"
+                <xctk:MaskedTextBox x:Name="CPFTextBox" Grid.Row="7" Grid.Column="0" Height="24"
                                     Mask="000,000,000-00" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -307,7 +307,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="2" Height="24"
+                <xctk:MaskedTextBox x:Name="RGTextBox" Grid.Row="7" Grid.Column="2" Height="24"
                                     Mask="00,000,000-0" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -317,7 +317,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="7" Grid.Column="4" Height="24"
+                <xctk:MaskedTextBox x:Name="CNPJTextBox" Grid.Row="7" Grid.Column="4" Height="24"
                                     Mask="00,000,000/0000-00" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -327,7 +327,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="7" Grid.Column="6" Height="24" Grid.ColumnSpan="3"
+                <TextBox x:Name="IETextBox" Grid.Row="7" Grid.Column="6" Height="24" Grid.ColumnSpan="3"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -336,7 +336,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="10" Grid.Column="0" Height="24"
+                <xctk:MaskedTextBox x:Name="Celular01TextBox" Grid.Row="10" Grid.Column="0" Height="24"
                                     Mask="(00) 00000-0000" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -347,7 +347,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="10" Grid.Column="2" Height="24"
+                <xctk:MaskedTextBox x:Name="Celular02TextBox" Grid.Row="10" Grid.Column="2" Height="24"
                                     Mask="(00) 00000-0000" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -357,7 +357,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="4" Height="24" 
+                <TextBox x:Name="Email01TextBox" Grid.Row="10" Grid.Column="4" Height="24" 
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -366,7 +366,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="10" Grid.Column="6" Height="24" 
+                <TextBox x:Name="Email02TextBox" Grid.Row="10" Grid.Column="6" Height="24" 
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -375,7 +375,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
+                <TextBox x:Name="EnderecoTextBox" Grid.Row="13" Grid.Column="0" Height="24" Grid.ColumnSpan="3"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -384,7 +384,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="4" Height="24" 
+                <TextBox x:Name="BairroTextBox" Grid.Row="13" Grid.Column="4" Height="24" 
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -393,7 +393,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="6" Height="24" 
+                <TextBox x:Name="CidadeTextBox" Grid.Row="13" Grid.Column="6" Height="24" 
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -402,7 +402,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="13" Grid.Column="85" Height="24" 
+                <TextBox x:Name="EstadoTextBox" Grid.Row="13" Grid.Column="85" Height="24" 
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -411,7 +411,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <xctk:MaskedTextBox Grid.Row="16" Grid.Column="0" Height="24"
+                <xctk:MaskedTextBox x:Name="CEPTextBox" Grid.Row="16" Grid.Column="0" Height="24"
                                     Mask="00000-000" PromptChar="_"
                                     Style="{StaticResource EstiloMaskedTextBox}"
                                     Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -421,7 +421,7 @@
                        Style="{StaticResource EstiloEtiqueta}"
                        Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="16" Grid.Column="2" Height="24" Grid.ColumnSpan="7"
+                <TextBox x:Name="ComplementoTextBox" Grid.Row="16" Grid.Column="2" Height="24" Grid.ColumnSpan="7"
                          Style="{StaticResource EstiloTextBox}"
                          Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
@@ -432,7 +432,7 @@
                         Style="{StaticResource EstiloEtiqueta}"
                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="19" Grid.Column="0"
+                <TextBox x:Name="ReferenciasParaEntregaTextBox" Grid.Row="19" Grid.Column="0"
                         Grid.ColumnSpan="3" Grid.RowSpan="3"
                         VerticalAlignment="Stretch" TextAlignment="Left" VerticalContentAlignment="Top"
                          Style="{StaticResource EstiloTextBox}"
@@ -444,7 +444,7 @@
                         Style="{StaticResource EstiloEtiqueta}"
                         Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <TextBox Grid.Row="19" Grid.Column="4"
+                <TextBox x:Name="ObservacoesGeraisTextBox" Grid.Row="19" Grid.Column="4"
                         Grid.RowSpan="3" Grid.ColumnSpan="5"
                         VerticalAlignment="Stretch" TextAlignment="Left" VerticalContentAlignment="Top"
                         Style="{StaticResource EstiloTextBox}"
@@ -505,11 +505,12 @@
 
             
             <!-- Back All Button -->
-            <Image Source="/assets/image/backAll_Button.png"
-                   Margin="353,621,0,47" Width="32" Height="32"
-                   HorizontalAlignment="Left"
-                   Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                   Style="{StaticResource BotãoAnimado}"/>
+            <Button Margin="353,621,0,47" Width="32" Height="32" 
+                    HorizontalAlignment="Left"
+                    Click="PrimeiroCadastro_Click"
+                    Visibility="{Binding IsChecked, ElementName=clientesButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image Source="/assets/image/backAll_Button.png" Stretch="Uniform" Style="{StaticResource BotãoAnimado}"/>
+            </Button>
 
             <!-- Back Button -->
             <Image Source=" /assets/image/back_Button.png"

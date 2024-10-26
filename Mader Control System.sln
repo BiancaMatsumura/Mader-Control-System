@@ -10,6 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		BooleanToVisibilityConverter.cs = BooleanToVisibilityConverter.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{582292DC-BBDD-4C5B-82C6-63DC59ECA2DC}"
+	ProjectSection(SolutionItems) = preProject
+		Cliente.cs = Cliente.cs
+		ClientesDatabaseHelper.cs = ClientesDatabaseHelper.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
