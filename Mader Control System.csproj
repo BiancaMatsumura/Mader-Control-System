@@ -10,41 +10,20 @@
 		<ApplicationIcon>assets\app_icon.ico</ApplicationIcon>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Remove="assets\image\backAll_Button.png" />
-		<None Remove="assets\image\back_Button.png" />
-		<None Remove="assets\image\botãoClientes_ativado.png" />
-		<None Remove="assets\image\botãoClientes_desativado.png" />
-		<None Remove="assets\image\box.png" />
-		<None Remove="assets\image\cross-small.png" />
-		<None Remove="assets\image\deleteButton.png" />
-		<None Remove="assets\image\editButton.png" />
-		<None Remove="assets\image\file-add.png" />
-		<None Remove="assets\image\foreground.png" />
-		<None Remove="assets\image\fundo1.png" />
-		<None Remove="assets\image\fundo_user.png" />
-		<None Remove="assets\image\home.png" />
-		<None Remove="assets\image\lateral_user.png" />
-		<None Remove="assets\image\logo.png" />
-		<None Remove="assets\image\minus-small.png" />
-		<None Remove="assets\image\newPerson.png" />
-		<None Remove="assets\image\nextAll_Button.png" />
-		<None Remove="assets\image\next_Button.png" />
-		<None Remove="assets\image\settings.png" />
-		<None Remove="assets\image\user.png" />
-	</ItemGroup>
-
+	<!-- Inclui o ícone do aplicativo e define para ser copiado para o diretório de saída -->
 	<ItemGroup>
 		<Content Include="assets\app_icon.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
+	<!-- Pacotes necessários via NuGet -->
 	<ItemGroup>
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
 		<PackageReference Include="System.Data.SQLite" Version="1.0.118" />
 	</ItemGroup>
 
+	<!-- Imagens adicionadas como recursos -->
 	<ItemGroup>
 		<Resource Include="assets\image\backAll_Button.png" />
 		<Resource Include="assets\image\back_Button.png" />
@@ -70,5 +49,3 @@
 	</ItemGroup>
 
 </Project>
-
-

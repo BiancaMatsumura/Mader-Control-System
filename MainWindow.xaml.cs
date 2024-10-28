@@ -8,7 +8,7 @@ namespace Mader_Control_System
 {
     public partial class MainWindow : Window
     {
-        private List<Cliente> clientes;
+        private List<Cliente> clientes = new List<Cliente>();
         private int clienteAtual = -1; // Índice do cliente atual
 
         public MainWindow()
@@ -97,7 +97,7 @@ namespace Mader_Control_System
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeButtonColor(saveButton, "#757A8B", "#8A90A6");
+            ChangeButtonColor(SalvarButton, "#757A8B", "#8A90A6");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -107,7 +107,7 @@ namespace Mader_Control_System
 
         private void CarregarClientes()
         {
-            clientes = DatabaseHelper.ObterClientes();
+            clientes = ClientesDatabaseHelper.ObterClientes();
         }
 
 
@@ -118,9 +118,11 @@ namespace Mader_Control_System
                 var cliente = clientes[clienteAtual];
                 IdTextBox.Text = cliente.Id.ToString();
                 NomeTextBox.Text = cliente.Nome;
-                DataCadastroTextBox.Text = cliente.DataCadastro;
+
+                // Convertendo DataCadastro e DataNasc para string
+                DataCadastroTextBox.Text = cliente.DataCadastro?.ToString("yyyy-MM-dd") ?? string.Empty; // Formato de data (pode ajustar conforme necessário)
                 NomeSocialTextBox.Text = cliente.NomeSocial;
-                DataNascTextBox.Text = cliente.DataNasc;
+                DataNascTextBox.Text = cliente.DataNasc?.ToString("yyyy-MM-dd") ?? string.Empty; // Formato de data (pode ajustar conforme necessário)
                 CPFTextBox.Text = cliente.CPF;
                 RGTextBox.Text = cliente.RG;
                 CNPJTextBox.Text = cliente.CNPJ;
@@ -143,6 +145,7 @@ namespace Mader_Control_System
                 LimparCampos();
             }
         }
+
 
         private void LimparCampos()
         {
@@ -212,12 +215,15 @@ namespace Mader_Control_System
 
         private void SalvarCadastro_Click(object sender, RoutedEventArgs e)
         {
+            // Inicialize um novo cliente
             var cliente = new Cliente
             {
                 Nome = NomeTextBox.Text,
-                DataCadastro = DataCadastroTextBox.Text,
+                // Convertendo DataCadastro de string para DateTime?
+                DataCadastro = DateTime.TryParse(DataCadastroTextBox.Text, out DateTime dataCadastro) ? (DateTime?)dataCadastro : null,
                 NomeSocial = NomeSocialTextBox.Text,
-                DataNasc = DataNascTextBox.Text,
+                // Convertendo DataNasc de string para DateTime?
+                DataNasc = DateTime.TryParse(DataNascTextBox.Text, out DateTime dataNasc) ? (DateTime?)dataNasc : null,
                 CPF = CPFTextBox.Text,
                 RG = RGTextBox.Text,
                 CNPJ = CNPJTextBox.Text,
@@ -236,20 +242,23 @@ namespace Mader_Control_System
                 ObservacoesGerais = ObservacoesGeraisTextBox.Text
             };
 
+            // Verifica se é um novo cadastro ou atualização
             if (clienteAtual == -1) // Novo cadastro
             {
-                DatabaseHelper.AdicionarCliente(cliente);
+                ClientesDatabaseHelper.AdicionarCliente(cliente);
             }
             else // Atualizar cadastro existente
             {
                 cliente.Id = int.Parse(IdTextBox.Text);
-                DatabaseHelper.AtualizarCliente(cliente);
+                ClientesDatabaseHelper.AtualizarCliente(cliente);
             }
 
-            CarregarClientes(); // Recarrega a lista de clientes após salvar
+            // Recarrega a lista de clientes após salvar
+            CarregarClientes();
             clienteAtual = clientes.Count - 1; // Define o cliente atual para o último da lista
             ExibirCliente(); // Exibe o cliente atual
         }
+
 
         private void EditarCadastro_Click(object sender, RoutedEventArgs e)
         {
@@ -293,7 +302,7 @@ namespace Mader_Control_System
                 if (resultado == MessageBoxResult.Yes)
                 {
                     var clienteId = int.Parse(IdTextBox.Text);
-                    DatabaseHelper.DeletarCliente(clienteId);
+                    ClientesDatabaseHelper.DeletarCliente(clienteId);
                     CarregarClientes(); // Recarrega a lista de clientes
 
                     // Atualiza o cliente atual
